@@ -1,0 +1,69 @@
+@tailwind components;
+
+@layer components {
+    .flex-centered{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+.navbar{
+    @apply flex justify-between items-stretch;
+}
+
+.navbar .navbar__item{
+    @apply border-r border-b border-gray-400 border-solid  py-6 last:border-r-0 relative;
+}
+
+.navbar .navbar__item .navbar__item__icon{
+    @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-3xl;
+}
+
+.navbar .navbar__menu{
+    @apply basis-1/12 flex-centered;
+}
+
+.navbar .navbar__logo{
+    @apply basis-1/12 flex-centered;
+}
+
+.navbar .navbar__links{
+    @apply basis-4/12 flex-centered justify-start gap-8 px-8;
+}
+
+.navbar .navbar__links .navbar__links__linkitem{
+    @apply font-fantasy tracking-wider cursor-pointer;
+}
+
+.navbar .navbar__search{
+    @apply basis-4/12 flex-centered gap-8 relative;
+}
+
+.navbar .navbar__search .navbar__search__fav{
+    @apply relative;
+}
+
+.navbar .navbar__search .navbar__search__fav .navbar__search__fav__icon{
+    @apply absolute text-2xl cursor-pointer top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2;
+}
+
+.navbar .navbar__search .navbar__search__searchbtn{
+    @apply font-fantasy tracking-wider cursor-pointer;
+}
+
+.navbar .navbar__utils{
+    @apply basis-2/12 flex-centered gap-16 relative;
+}
+
+.navbar .navbar__utils__item{
+    @apply relative;
+}
+
+.navbar .navbar__utils__item__icon{
+    @apply absolute text-2xl cursor-pointer top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2;
+}
+
+.navbar .navbar__utils__bag .navbar__utils__item__icon{
+    @apply text-xl;
+}
