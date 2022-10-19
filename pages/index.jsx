@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { IoIosArrowForward } from 'react-icons/io';
 import ImageWrapper from '../components/ImageWrapper'
 import ModelPic1 from '../public/assets/images/model1.png'
+import Navbar from '../components/Navbar';
 import styles from '../styles/Home.module.css'
 
 export default function Home() {
