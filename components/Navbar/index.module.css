@@ -10,6 +10,7 @@
 
 .navbar{
     @apply flex justify-between items-stretch;
+    height: 4.5rem;
 }
 
 .navbar .navbar__item{

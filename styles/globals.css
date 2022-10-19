@@ -10,7 +10,8 @@
 }
 
 .maxw-wrapper{
-    @apply max-w-7xl m-auto;
+    @apply m-auto;
+    max-width: 74rem;
 }
 
 .maxcontentw-wrapper{
@@ -18,5 +19,5 @@
 }
 
 body{
-    @apply bg-lime-50;
+    @apply bg-lime-50 overflow-x-hidden;
 }
