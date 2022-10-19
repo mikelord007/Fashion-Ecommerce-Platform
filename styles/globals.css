@@ -10,3 +10,11 @@
     @apply text-white;
     font-family: 'Roboto';
 }
+
+.maxw-wrapper{
+    @apply max-w-7xl;
+}
+
+.maxcontentw-wrapper{
+    
+}
