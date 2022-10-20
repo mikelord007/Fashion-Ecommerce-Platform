@@ -55,11 +55,11 @@
 }
 
 .productpage .productpage__left .productpage__left__carousel .productpage__left__carousel__imgcontainer{
-    @apply h-64 w-80;
+    @apply h-64 w-80 overflow-hidden;
 }
 
 .productpage .productpage__left .productpage__left__carousel .productpage__left__carousel__imgcontainer__img{
-    @apply w-full h-full bg-cover bg-no-repeat;
+    @apply w-full h-full bg-cover bg-no-repeat bg-center transition-transform duration-200 hover:scale-125 origin-top;
 }
 
 .productpage .productpage__left .productpage__left__carousel .productpage__left__carousel__imgcontainer__img1{
@@ -93,11 +93,41 @@
 }
 
 .productpage .productpage__right__imgcontainer__modelpic{
-    @apply absolute bottom-0 left-1/2 -translate-x-1/2;
+    @apply absolute bottom-0 left-3/4 -translate-x-1/2 opacity-0;
     z-index: 60;
     bottom: -75px;
     width: 35rem;
     aspect-ratio: 0.666;
+}
+
+.productpage .modelpic__active{
+    animation: show-in 0.15s linear forwards;
+    animation-delay: 0.20s;
+}
+
+@keyframes show-in {
+    0%{
+        @apply left-3/4 opacity-100;
+    }
+
+    100%{
+        @apply opacity-100 left-1/2;
+    }
+}
+
+.productpage .modelpic__passive{
+    @apply left-1/2 opacity-100;
+    animation: show-out 0.25s linear forwards;
+}
+
+@keyframes show-out {
+
+    0%{
+        @apply left-1/2 opacity-100;
+    }
+    100%{
+        @apply left-3/4 opacity-0;
+    }
 }
 
 .productpage .productpage__right__imgcontainer__modelcirclemain{
@@ -153,6 +183,16 @@
     @apply absolute left-28 aspect-square rotate-12 w-6;
     z-index: 70;
     bottom: 34rem;
+    animation: spin-rev 8s linear infinite forwards;
+}
+
+@keyframes spin-rev {
+    0%{
+        rotate: 0deg;
+    }
+    100%{
+        rotate: -360deg;
+    }
 }
 
 .productpage .productpage__right__imgcontainer__hollowcircle{
@@ -160,6 +200,7 @@
     z-index: 70;
     left: 33rem;
     bottom: 43rem;
+    animation: spin 8s infinite linear;
 }
 
 .productpage .productpage__right__imgcontainer__ribbon{

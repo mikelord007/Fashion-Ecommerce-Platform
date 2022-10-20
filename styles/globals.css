@@ -19,5 +19,6 @@
 }
 
 body{
-    @apply bg-lime-50 overflow-x-hidden;
+    @apply overflow-x-hidden;
+    background: #f4f4f4;
 }

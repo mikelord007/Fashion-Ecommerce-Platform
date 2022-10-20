@@ -1,4 +1,4 @@
-import Head from 'next/head'
+import {useState} from 'react'
 import { IoIosArrowForward } from 'react-icons/io';
 import ImageWrapper from '../components/ImageWrapper'
 import ModelPic1 from '../public/assets/images/model1.png'
@@ -16,7 +16,10 @@ import ribbon from '../public/assets/svgs/ribbon.svg'
 import Navbar from '../components/Navbar';
 import styles from '../styles/Home.module.css'
 
-export default function Home() {
+const Home = () => {
+
+  const [activeModelPic, setactiveModelPic] = useState(1)
+
   return (
     <>
       <Navbar />
@@ -48,16 +51,16 @@ export default function Home() {
               </div>
               <div className={styles.productpage__left__carousel} >
                 <div className={styles.productpage__left__carousel__imgcontainer} >
-                  <div className={[styles.productpage__left__carousel__imgcontainer__img, styles.productpage__left__carousel__imgcontainer__img1].join(' ')} />
+                  <button onClick={() => setactiveModelPic(1)} className={[styles.productpage__left__carousel__imgcontainer__img, styles.productpage__left__carousel__imgcontainer__img1].join(' ')} />
                 </div>
                 <div className={styles.productpage__left__carousel__imgcontainer} >
-                  <div className={[styles.productpage__left__carousel__imgcontainer__img, styles.productpage__left__carousel__imgcontainer__img2].join(' ')} />
+                  <button onClick={() => setactiveModelPic(2)} className={[styles.productpage__left__carousel__imgcontainer__img, styles.productpage__left__carousel__imgcontainer__img2].join(' ')} />
                 </div>
                 <div className={styles.productpage__left__carousel__imgcontainer} >
-                  <div className={[styles.productpage__left__carousel__imgcontainer__img, styles.productpage__left__carousel__imgcontainer__img3].join(' ')} />
+                  <button onClick={() => setactiveModelPic(3)} className={[styles.productpage__left__carousel__imgcontainer__img, styles.productpage__left__carousel__imgcontainer__img3].join(' ')} />
                 </div>
                 <div className={styles.productpage__left__carousel__imgcontainer} >
-                  <div className={[styles.productpage__left__carousel__imgcontainer__img, styles.productpage__left__carousel__imgcontainer__img4].join(' ')} />
+                  <button onClick={() => setactiveModelPic(4)} className={[styles.productpage__left__carousel__imgcontainer__img, styles.productpage__left__carousel__imgcontainer__img4].join(' ')} />
                 </div>
                 <button className={styles.productpage__left__carousel__morebtn}>
                   <IoIosArrowForward className={styles.productpage__left__carousel__morebtn__icon}/>
@@ -66,7 +69,10 @@ export default function Home() {
             </div>
             <div className={styles.productpage__right}>
               <div className={styles.productpage__right__imgcontainer}>
-                <ImageWrapper absolute={true} className={styles.productpage__right__imgcontainer__modelpic} src={ModelPic2} />
+                <ImageWrapper absolute={true} className={`${styles.productpage__right__imgcontainer__modelpic} ${activeModelPic === 1? styles.modelpic__active:styles.modelpic__passive}`} src={ModelPic1} />
+                <ImageWrapper absolute={true} className={`${styles.productpage__right__imgcontainer__modelpic} ${activeModelPic === 2? styles.modelpic__active:styles.modelpic__passive}`} src={ModelPic2} />
+                <ImageWrapper absolute={true} className={`${styles.productpage__right__imgcontainer__modelpic} ${activeModelPic === 3? styles.modelpic__active:styles.modelpic__passive}`} src={ModelPic3} />
+                <ImageWrapper absolute={true} className={`${styles.productpage__right__imgcontainer__modelpic} ${activeModelPic === 4? styles.modelpic__active:styles.modelpic__passive}`} src={ModelPic4} />
                 <div absolute={true} className={styles.productpage__right__imgcontainer__modelcirclemain} src={modelcirclemain}/>
                 <div absolute={true} className={styles.productpage__right__imgcontainer__modelcirclesecondary} src={modelcirclesecondary}/>
                 <div absolute={true} className={styles.productpage__right__imgcontainer__modelcirclesecondary2} src={modelcirclesecondary}/>
@@ -85,3 +91,5 @@ export default function Home() {
     </>
   )
 }
+
+export default Home;
