@@ -1,21 +1,25 @@
 .productpage{
     @apply flex relative;
-    min-height: calc(100vh - 4.5rem)
+    min-height: calc(100vh - 4.5rem);
+    height: 53.25rem;
 }
 
 .productpage .productpage__left{
-    @apply flex flex-col justify-end py-8 gap-12;
+    @apply flex flex-col justify-end py-8 gap-12 relative;
     width: 57%;
 }
 
 .productpage .productpage__left .productpage__left__info{
-    @apply flex flex-col gap-5 relative mt-12;
+    @apply flex flex-col gap-5 mt-12;
 }
 
 .productpage .productpage__left .productpage__left__info .productpage__left__info__title{
-    @apply text-7xl font-bold;
-    line-height: 6rem;
+    @apply text-6xl font-bold absolute;
+    line-height: 5rem;
+    letter-spacing: 0px;
 }
+
+
 
 .productpage .productpage__left .productpage__left__info .productpage__left__info__price{
     @apply text-5xl;
@@ -26,7 +30,7 @@
 }
 
 .productpage .productpage__left .productpage__left__info .productpage__left__info__addbtn{
-    @apply max-w-2xl tracking-wide text-xl absolute bottom-32 right-16 w-20 h-20 bg-red-500 rounded-full text-white font-black text-xl tracking-wide;
+    @apply max-w-2xl absolute top-52 right-24 w-20 h-20 bg-red-500 rounded-full text-white font-black text-xl tracking-wide;
     font-family: monospace;
 }
 
@@ -55,11 +59,12 @@
 }
 
 .productpage .productpage__left .productpage__left__carousel .productpage__left__carousel__imgcontainer{
-    @apply h-64 w-80 overflow-hidden;
+    @apply h-52 w-36 overflow-hidden;
 }
 
 .productpage .productpage__left .productpage__left__carousel .productpage__left__carousel__imgcontainer__img{
-    @apply w-full h-full bg-cover bg-no-repeat bg-center transition-transform duration-200 hover:scale-125 origin-top;
+    @apply w-full h-full bg-cover bg-no-repeat bg-center transition-transform duration-500 hover:scale-125 origin-top;
+    transition-timing-function: cubic-bezier(0.36, 0.01, 0.2, 1);
 }
 
 .productpage .productpage__left .productpage__left__carousel .productpage__left__carousel__imgcontainer__img1{
@@ -219,7 +224,3 @@
         transform: rotate(360deg);
       }
 }
-
-
-
-

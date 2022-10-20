@@ -1,0 +1,11 @@
+.stagger_slide_up_title_1{
+    top: calc(26% - 2.5rem);
+}
+
+.stagger_slide_up_title_2{
+    top: calc(26% + 2.5rem);
+}
+
+.stagger_slide_up{
+    display: none;
+}
