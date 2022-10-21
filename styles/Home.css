@@ -1,14 +1,22 @@
 .stagger_slide_up_title_1{
     @apply absolute;
-    top: calc(26% - 2.5rem);
+    z-index: 60;
+    top: calc(42% - 2.5rem);
 }
 
 .stagger_slide_up_title_2{
     @apply absolute;
-    top: calc(26% + 2.5rem);
+    z-index: 60;
+    top: calc(42% + 2.5rem);
 }
 
 .stagger_slide_up{
     height: 0;
     overflow: hidden;
+}
+
+.initial_modelpic{
+/*   in home module */
+    width: 31rem;
+    transform: translateX(-33rem);
 }

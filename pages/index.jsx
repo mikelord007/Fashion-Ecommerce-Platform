@@ -3,9 +3,11 @@ import { IoIosArrowForward } from 'react-icons/io';
 import ImageWrapper from '../components/ImageWrapper'
 import Navbar from '../components/Navbar';
 import { gsap } from "gsap";
+import CustomEase from "gsap/dist/CustomEase";
 import styles from '../styles/Home.module.css'
 
 //assets
+import ModelPic0 from '../public/assets/images/model5.png'
 import ModelPic1 from '../public/assets/images/model1.png'
 import ModelPic2 from '../public/assets/images/model2.png'
 import ModelPic3 from '../public/assets/images/model3.png'
@@ -25,26 +27,34 @@ const Home = () => {
   const [activeModelPic, setactiveModelPic] = useState(0)
 
   useEffect(() => {
+    gsap.registerPlugin(CustomEase);
+    
     setTimeout(() => {
 
       
       var tl = gsap.timeline();
-      tl.to('.stagger_slide_up_title', { duration: 0.4, y: '-8rem', stagger: { amount: 0.3}})
+      tl.to('.stagger_slide_up_title', { duration: 0.4, y: '-14rem', stagger: { amount: 0.3}})
         
       .fromTo('.stagger_slide_up',{ y: '6rem', opacity: 0.5 }, {duration: 0.4, height: 'inherit',y: '0rem', opacity: 1, stagger: { amount: 0.3} })
         
-      .fromTo('.image_shrink_animation',{scale: '1.5'}, {scale: '1',duration: 0.3, stagger: { amount: 0.3}, onComplete: function () {
-        gsap.set(this.targets(), { clearProps: "all" }, 0);
-      }}, '-=0.9')
+      .fromTo('.image_shrink_animation',{height: '150%', transformOrigin: 'top left'}, {height: '100%', duration: 0.8, stagger: { amount: 0.3}, onComplete: function ()  {
+              gsap.set(this.targets(), {clearProps: 'all'})
+              gsap.set(this.targets(), {height: '100%'})
+      }}, '0.5', )
         
-      .fromTo('.model_carousel_animation', { x: '7rem', display: 'inherit' }, {duration: 0.3, x: '0rem', stagger: { amount: 0.3}}, '-=0.3')
+      .fromTo('.model_carousel_animation', {x: 0 }, {duration: 0.8, x: '-10rem', stagger: { amount: 0.3}, opacity: '1'} , '0.5')
         
-      .fromTo('.initial_modelpic',{x: '-39rem'},{duration: 0.3, x: '0', onComplete: function() {
-    gsap.set(this.targets(), { clearProps: "all" }, 0);
-  }})
+      .fromTo(`.${styles.initial_modelpic}`,{},{ ease: "circ.out", duration: 1.8, x: '-11rem', ease: CustomEase.create("custom", "M0,0 C0.046,0.49 0.172,0.653 0.448,0.83 0.526,0.88 0.656,0.934 1,1 ")}, '0.15')
     
-    
-    },2000)
+      .fromTo(`.${styles.move_circle_right}`,{},{duration: 1.7, x: '23rem', stagger: { amount: 0.2}}, '0.25')
+
+      .to(`.${styles.popup_animation}`, {scale: 1, stagger: { amount: 0.3}}, 0.45)
+
+      .to(`.${styles.animate_toleft}`, {onComplete: function () {
+        this.targets().forEach(e => {e.classList.remove(styles.animate_toleft);
+      })}}, 0.45)
+      
+    },200000)
   
   }, [])
   
@@ -71,7 +81,7 @@ const Home = () => {
                     Front tie at hem. Front button closure.
                   </span>
                 </p>
-                <button className={styles.productpage__left__info__addbtn}>ADD</button>
+                <button  className={[styles.productpage__left__info__addbtn, styles.popup_animation].join(' ')}>ADD</button>
               </div>
               <div className={styles.productpage__left__size}>
                 <h2 className={[styles.productpage__left__size__title, 'stagger_slide_up'].join(' ')}>
@@ -104,21 +114,22 @@ const Home = () => {
             </div>
             <div className={styles.productpage__right}>
               <div className={styles.productpage__right__imgcontainer}>
-                <ImageWrapper absolute={true} className={`${styles.productpage__right__imgcontainer__modelpic} ${activeModelPic === 1? styles.modelpic__active:styles.modelpic__passive} initial_modelpic`} src={ModelPic1} />
-                <ImageWrapper absolute={true} className={`${styles.productpage__right__imgcontainer__modelpic} ${activeModelPic === 2? styles.modelpic__active:styles.modelpic__passive}`} src={ModelPic2} />
-                <ImageWrapper absolute={true} className={`${styles.productpage__right__imgcontainer__modelpic} ${activeModelPic === 3? styles.modelpic__active:styles.modelpic__passive}`} src={ModelPic3} />
-                <ImageWrapper absolute={true} className={`${styles.productpage__right__imgcontainer__modelpic} ${activeModelPic === 4? styles.modelpic__active:styles.modelpic__passive}`} src={ModelPic4} />
-                <div absolute={true} className={styles.productpage__right__imgcontainer__modelcirclemain} src={modelcirclemain}/>
-                <div absolute={true} className={styles.productpage__right__imgcontainer__modelcirclesecondary} src={modelcirclesecondary}/>
-                <div absolute={true} className={styles.productpage__right__imgcontainer__modelcirclesecondary2} src={modelcirclesecondary}/>
-                <div absolute={true} className={styles.productpage__right__imgcontainer__modelcirclesecondary3} src={modelcirclesecondary}/>
-                <div absolute={true} className={styles.productpage__right__imgcontainer__modelcirclesecondary4} src={modelcirclesecondary}/>
-                <ImageWrapper absolute={true} className={styles.productpage__right__imgcontainer__filledcircle} src={filledcircle}/>
-                <ImageWrapper absolute={true} className={styles.productpage__right__imgcontainer__hollowcircle} src={hollowcircle}/>
-                <ImageWrapper absolute={true} className={styles.productpage__right__imgcontainer__ribbon} src={ribbon}/>
-                <ImageWrapper absolute={true} className={styles.productpage__right__imgcontainer__curvyarrowup} src={curvyarrowup}/>
-                <ImageWrapper absolute={true} className={styles.productpage__right__imgcontainer__curvyarrowleft} src={curvyarrowleft}/>
-                <ImageWrapper absolute={true} className={styles.productpage__right__imgcontainer__bladeleaf} src={bladeleaf}/>
+                <ImageWrapper absolute={true} className={`${styles.productpage__right__imgcontainer__modelpic} ${activeModelPic === 0? styles.modelpic__active:styles.modelpic__passive} ${styles.initial_modelpic}`} src={ModelPic0} quality={100} priority/>
+                <ImageWrapper absolute={true} className={`${styles.productpage__right__imgcontainer__modelpic} ${activeModelPic === 1? styles.modelpic__active:styles.modelpic__passive}`} src={ModelPic1} quality={100} />
+                <ImageWrapper absolute={true} className={`${styles.productpage__right__imgcontainer__modelpic} ${activeModelPic === 2? styles.modelpic__active:styles.modelpic__passive}`} src={ModelPic2} quality={100} />
+                <ImageWrapper absolute={true} className={`${styles.productpage__right__imgcontainer__modelpic} ${activeModelPic === 3? styles.modelpic__active:styles.modelpic__passive}`} src={ModelPic3} quality={100} />
+                <ImageWrapper absolute={true} className={`${styles.productpage__right__imgcontainer__modelpic} ${activeModelPic === 4? styles.modelpic__active:styles.modelpic__passive}`} src={ModelPic4} quality={100} />
+                <div className={`${styles.productpage__right__imgcontainer__modelcirclemain} ${styles.move_circle_right}`} />
+                <div className={`${styles.productpage__right__imgcontainer__modelcirclesecondary} ${styles.move_circle_right}`} />
+                <div className={`${styles.productpage__right__imgcontainer__modelcirclesecondary2} ${styles.move_circle_right}`} />
+                <div className={`${styles.productpage__right__imgcontainer__modelcirclesecondary3} ${styles.move_circle_right}`} />
+                <div className={`${styles.productpage__right__imgcontainer__modelcirclesecondary4} ${styles.move_circle_right}`} />
+                <ImageWrapper absolute={true} className={[styles.productpage__right__imgcontainer__filledcircle, styles.productpge__right__imgcontainer__bitsnpieces, styles.popup_animation].join(' ')} src={filledcircle}/>
+                <ImageWrapper absolute={true} className={[styles.productpage__right__imgcontainer__hollowcircle, styles.productpge__right__imgcontainer__bitsnpieces, styles.popup_animation].join(' ')} src={hollowcircle}/>
+                <ImageWrapper absolute={true} className={[styles.productpage__right__imgcontainer__ribbon, styles.productpge__right__imgcontainer__bitsnpieces, styles.popup_animation].join(' ')} src={ribbon}/>
+                <ImageWrapper absolute={true} className={[styles.productpage__right__imgcontainer__curvyarrowup, styles.animate_toleft].join(' ')} src={curvyarrowup}/>
+                <ImageWrapper absolute={true} className={[styles.productpage__right__imgcontainer__curvyarrowleft, styles.animate_toleft].join(' ')} src={curvyarrowleft}/>
+                <ImageWrapper absolute={true} className={[styles.productpage__right__imgcontainer__bladeleaf, styles.productpge__right__imgcontainer__bitsnpieces, styles.popup_animation].join(' ')} src={bladeleaf}/>
               </div>
             </div>
           </div>
