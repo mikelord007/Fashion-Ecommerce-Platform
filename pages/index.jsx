@@ -1,5 +1,10 @@
 import {useState, useEffect} from 'react'
 import { IoIosArrowForward } from 'react-icons/io';
+import { IoIosArrowUp } from 'react-icons/io';
+import { FaFacebookF } from 'react-icons/fa';
+import { AiOutlineInstagram } from 'react-icons/ai';
+import { BsTwitter } from 'react-icons/bs';
+import { IoIosAdd } from 'react-icons/io';
 import ImageWrapper from '../components/ImageWrapper'
 import Navbar from '../components/Navbar';
 import { gsap } from "gsap";
@@ -12,13 +17,14 @@ import ModelPic1 from '../public/assets/images/model1.png'
 import ModelPic2 from '../public/assets/images/model2.png'
 import ModelPic3 from '../public/assets/images/model3.png'
 import ModelPic4 from '../public/assets/images/model4.png'
+import sideModel from '../public/assets/images/sidechick.png'
 import bladeleaf from '../public/assets/svgs/bladeleaf.svg'
 import curvyarrowleft from '../public/assets/svgs/curvyarrowleft.svg'
 import curvyarrowup from '../public/assets/svgs/curvyarrowup.svg'
 import filledcircle from '../public/assets/svgs/filledcircle.svg'
 import hollowcircle from '../public/assets/svgs/hollowcircle.svg'
-import modelcirclemain from '../public/assets/svgs/modelcirclemain.svg'
-import modelcirclesecondary from '../public/assets/svgs/modelcirclesecondary.svg'
+import product1 from '../public/assets/images/yellow_bag.png'
+import product2 from '../public/assets/images/flip_flops.png'
 import ribbon from '../public/assets/svgs/ribbon.svg'
 
 
@@ -26,14 +32,21 @@ const Home = () => {
 
   const [activeModelPic, setactiveModelPic] = useState(0)
 
-  useEffect(() => {
-    gsap.registerPlugin(CustomEase);
-    
-    setTimeout(() => {
-
+  const runAnimation = () => {
       
       var tl = gsap.timeline();
-      tl.to('.stagger_slide_up_title', { duration: 0.4, y: '-14rem', stagger: { amount: 0.3}})
+      tl
+      .to(`.${styles.initialFloater}`,{duration: 0.2, opacity: 0, scale: 0})
+
+      .to(`.${styles.productpage__left__playbtn}`, {duration: 0.5, scale: 0}, '<')
+
+      .to(`.${styles.socials__btn}`, {opacity: 0, scale: 0, duration: 0.2, stagger: {amount: 0.2}}, '<')
+
+      .fromTo(`.${styles.productpage__right__productcard}`,{transformOrigin: 'bottom right'},{opacity: 0, scale: 0,duration: 1, stagger: {amount: 0.2}}, '<')
+
+      .to(`.${styles.sidepane}`, {x: '20rem'}, '<')
+
+      .to('.stagger_slide_up_title', { duration: 0.4, y: '-14rem', stagger: { amount: 0.3}})
         
       .fromTo('.stagger_slide_up',{ y: '6rem', opacity: 0.5 }, {duration: 0.4, height: 'inherit',y: '0rem', opacity: 1, stagger: { amount: 0.3} })
         
@@ -47,15 +60,18 @@ const Home = () => {
       .fromTo(`.${styles.initial_modelpic}`,{},{ ease: "circ.out", duration: 1.8, x: '-11rem', ease: CustomEase.create("custom", "M0,0 C0.046,0.49 0.172,0.653 0.448,0.83 0.526,0.88 0.656,0.934 1,1 ")}, '0.15')
     
       .fromTo(`.${styles.move_circle_right}`,{},{duration: 1.7, x: '23rem', stagger: { amount: 0.2}}, '0.25')
-
+  
       .to(`.${styles.popup_animation}`, {scale: 1, stagger: { amount: 0.3}}, 0.45)
-
+  
       .to(`.${styles.animate_toleft}`, {onComplete: function () {
         this.targets().forEach(e => {e.classList.remove(styles.animate_toleft);
       })}}, 0.45)
-      
-    },200000)
-  
+
+  }
+
+  useEffect(() => {
+    gsap.registerPlugin(CustomEase);
+    
   }, [])
   
 
@@ -111,6 +127,14 @@ const Home = () => {
                   <IoIosArrowForward className={styles.productpage__left__carousel__morebtn__icon}/>
                 </button>
               </div>
+              <ImageWrapper absolute={true} src={bladeleaf} className={[styles.initialFloater, styles.initialFloater1].join(' ')}/>
+              <ImageWrapper absolute={true} src={hollowcircle} className={[styles.initialFloater, styles.initialFloater2].join(' ')}/>
+              <ImageWrapper absolute={true} src={curvyarrowleft} className={[styles.initialFloater, styles.initialFloater3].join(' ')}/>
+              <ImageWrapper absolute={true} src={ribbon} className={[styles.initialFloater, styles.initialFloater4].join(' ')}/>
+
+              <button onClick={runAnimation} className={styles.productpage__left__playbtn}>
+               <IoIosAdd className={styles.productpage__left__playbtn__icon}/>
+              </button>
             </div>
             <div className={styles.productpage__right}>
               <div className={styles.productpage__right__imgcontainer}>
@@ -131,7 +155,41 @@ const Home = () => {
                 <ImageWrapper absolute={true} className={[styles.productpage__right__imgcontainer__curvyarrowleft, styles.animate_toleft].join(' ')} src={curvyarrowleft}/>
                 <ImageWrapper absolute={true} className={[styles.productpage__right__imgcontainer__bladeleaf, styles.productpge__right__imgcontainer__bitsnpieces, styles.popup_animation].join(' ')} src={bladeleaf}/>
               </div>
+              <div className={[styles.productpage__right__productcard, styles.productpage__right__productcard1].join(' ')}>
+                <div className={styles.productpage__right__productcard__description}>
+                  <h3 className={styles.productpage__right__productcard__description__name}>Medium Crossbody Bag</h3>
+                  <p className={styles.productpage__right__productcard__description__price}>$34</p>
+                </div>
+                <ImageWrapper priority={true} className={styles.productpage__right__productcard__img} src={product1} absolute={true} />
+              </div>
+              <div className={[styles.productpage__right__productcard, styles.productpage__right__productcard2].join(' ')}>
+                <div className={styles.productpage__right__productcard__description}>
+                  <h3 className={styles.productpage__right__productcard__description__name}>High Heals Sandals</h3>
+                  <p className={styles.productpage__right__productcard__description__price}>$65</p>
+                </div>
+                <ImageWrapper priority={true} className={styles.productpage__right__productcard__img} src={product2} absolute={true} />
+              </div>
             </div>
+          </div>
+          <div className={styles.sidepane}>
+            <div className={styles.sidepane__modelpane}>
+              <ImageWrapper priority={true} src={sideModel} className={styles.sidepane__modelpane__modelpic}/>
+            </div>
+            <button className={styles.sidepane__modelpane__expandbtn}>
+                <IoIosArrowForward className={styles.sidepane__modelpane__expandbtn__icon}/>
+            </button>
+            <button className={styles.sidepane__modelpane__sizebtn}>SIZE GUIDE <IoIosArrowUp className={styles.sidepane__modelpane__sizebtn__icon}/></button>
+          </div>
+          <div className={styles.socials}>
+            <button className={styles.socials__btn}>
+              <FaFacebookF className={styles.socials__btn__icon} />
+            </button>
+            <button className={styles.socials__btn}>
+              <BsTwitter className={styles.socials__btn__icon} />
+            </button>
+            <button className={styles.socials__btn}>
+              <AiOutlineInstagram className={styles.socials__btn__icon} />
+            </button>
           </div>
       </div>
     </>

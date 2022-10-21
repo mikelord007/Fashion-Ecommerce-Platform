@@ -11,7 +11,7 @@
 }
 
 .maxw-wrapper{
-    @apply m-auto;
+    @apply m-auto relative;
     max-width: 74rem;
 }
 
