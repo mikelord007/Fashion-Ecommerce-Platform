@@ -36,36 +36,39 @@ const Home = () => {
       
       var tl = gsap.timeline();
       tl
-      .to(`.${styles.initialFloater}`,{duration: 0.2, opacity: 0, scale: 0})
-
+      
+      .to(`.${styles.initialFloater}`,{duration: 0.4, opacity: 0, scale: 0})
+      
       .to(`.${styles.productpage__left__playbtn}`, {duration: 0.5, scale: 0}, '<')
-
-      .to(`.${styles.socials__btn}`, {opacity: 0, scale: 0, duration: 0.2, stagger: {amount: 0.2}}, '<')
-
-      .fromTo(`.${styles.productpage__right__productcard}`,{transformOrigin: 'bottom right'},{opacity: 0, scale: 0,duration: 1, stagger: {amount: 0.2}}, '<')
-
-      .to(`.${styles.sidepane}`, {x: '20rem'}, '<')
+      
+      .to(`.${styles.socials__btn}`, {opacity: 0, scale: 0, duration: 0.4, stagger: {amount: 0.2}}, '<')
+      
+      .fromTo(`.${styles.productpage__right__productcard}`,{transformOrigin: 'bottom right'},{opacity: 0, scale: 0,duration: 0.5, stagger: {amount: 0.2}}, '<')
+      
+      .to(`.${styles.sidepane}`, {x: '20rem', duration: 0.45}, '<')
+      
+      .to(`body`, {overflowY: 'scroll'}, '<')
 
       .to('.stagger_slide_up_title', { duration: 0.4, y: '-14rem', stagger: { amount: 0.3}})
         
-      .fromTo('.stagger_slide_up',{ y: '6rem', opacity: 0.5 }, {duration: 0.4, height: 'inherit',y: '0rem', opacity: 1, stagger: { amount: 0.3} })
+      .fromTo('.stagger_slide_up',{ y: '6rem', opacity: 0.5 }, {duration: 0.4, height: 'inherit',y: '0rem', opacity: 1, stagger: { amount: 0.3} }, '-=0.2')
         
       .fromTo('.image_shrink_animation',{height: '150%', transformOrigin: 'top left'}, {height: '100%', duration: 0.8, stagger: { amount: 0.3}, onComplete: function ()  {
               gsap.set(this.targets(), {clearProps: 'all'})
               gsap.set(this.targets(), {height: '100%'})
-      }}, '0.5', )
+      }} )
         
-      .fromTo('.model_carousel_animation', {x: 0 }, {duration: 0.8, x: '-10rem', stagger: { amount: 0.3}, opacity: '1'} , '0.5')
+      .fromTo('.model_carousel_animation', {x: 0 }, {duration: 0.8, x: '-10rem', stagger: { amount: 0.3}, opacity: '1'}, '0.3' )
         
-      .fromTo(`.${styles.initial_modelpic}`,{},{ ease: "circ.out", duration: 1.8, x: '-11rem', ease: CustomEase.create("custom", "M0,0 C0.046,0.49 0.172,0.653 0.448,0.83 0.526,0.88 0.656,0.934 1,1 ")}, '0.15')
+      .fromTo(`.${styles.initial_modelpic}`,{},{ ease: "circ.out", duration: 1.8, x: '-11rem', ease: CustomEase.create("custom", "M0,0 C0.046,0.49 0.172,0.653 0.448,0.83 0.526,0.88 0.656,0.934 1,1 ")}, '0.3')
     
-      .fromTo(`.${styles.move_circle_right}`,{},{duration: 1.7, x: '23rem', stagger: { amount: 0.2}}, '0.25')
+      .fromTo(`.${styles.move_circle_right}`,{},{duration: 1.7, x: '23rem', stagger: { amount: 0.2}}, '0.4')
   
-      .to(`.${styles.popup_animation}`, {scale: 1, stagger: { amount: 0.3}}, 0.45)
+      .to(`.${styles.popup_animation}`, {scale: 1, stagger: { amount: 0.3}})
   
       .to(`.${styles.animate_toleft}`, {onComplete: function () {
         this.targets().forEach(e => {e.classList.remove(styles.animate_toleft);
-      })}}, 0.45)
+      })}})
 
   }
 

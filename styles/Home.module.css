@@ -102,7 +102,7 @@
 }
 
 .productpage .productpage__left .initialFloater{
-    @apply absolute w-8 h-8 left-20 top-16;
+    @apply absolute w-16 h-16 left-20 top-16;
     z-index: 100;
 }
 
@@ -111,20 +111,21 @@
 }
 
 .productpage .productpage__left .initialFloater2{
+    @apply w-8;
     left: 11rem;
     top: 13rem;
     animation: spin-rev 8.5s infinite forwards linear;
 }
 
 .productpage .productpage__left .initialFloater3{
-    left: 25rem;
-    top: 3rem;
+    @apply top-8 h-16 w-16;
+    left: 23rem;
     rotate: 87deg;
 }
 
 .productpage .productpage__left .initialFloater4{
     left: 56rem;
-    top: 9rem;
+    top: 6rem;
     animation: spin 5s infinite forwards linear;
 }
 
