@@ -1,11 +1,14 @@
 .stagger_slide_up_title_1{
+    @apply absolute;
     top: calc(26% - 2.5rem);
 }
 
 .stagger_slide_up_title_2{
+    @apply absolute;
     top: calc(26% + 2.5rem);
 }
 
 .stagger_slide_up{
-    display: none;
+    height: 0;
+    overflow: hidden;
 }

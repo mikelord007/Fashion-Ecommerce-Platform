@@ -22,20 +22,30 @@ import ribbon from '../public/assets/svgs/ribbon.svg'
 
 const Home = () => {
 
-  const [activeModelPic, setactiveModelPic] = useState(1)
+  const [activeModelPic, setactiveModelPic] = useState(0)
 
   useEffect(() => {
     setTimeout(() => {
+
+      
       var tl = gsap.timeline();
-      tl.to('.stagger_slide_up_title', { duration: 0.4, y: '-11rem', stagger: { amount: 0.3}})
-      .fromTo('.stagger_slide_up',{ y: '6rem', opacity: 0.5 }, {duration: 0.4, display: 'inherit',y: '0rem', opacity: 1, stagger: { amount: 0.3} })
-      .fromTo('.model_carousel_animation', { x: '7rem' }, {duration: 0.3, x: '0rem', stagger: { amount: 0.3}})
+      tl.to('.stagger_slide_up_title', { duration: 0.4, y: '-8rem', stagger: { amount: 0.3}})
+        
+      .fromTo('.stagger_slide_up',{ y: '6rem', opacity: 0.5 }, {duration: 0.4, height: 'inherit',y: '0rem', opacity: 1, stagger: { amount: 0.3} })
+        
       .fromTo('.image_shrink_animation',{scale: '1.5'}, {scale: '1',duration: 0.3, stagger: { amount: 0.3}, onComplete: function () {
-        gsap.set(this.targets(), { clearProps: "all" });
+        gsap.set(this.targets(), { clearProps: "all" }, 0);
       }}, '-=0.9')
+        
+      .fromTo('.model_carousel_animation', { x: '7rem', display: 'inherit' }, {duration: 0.3, x: '0rem', stagger: { amount: 0.3}}, '-=0.3')
+        
+      .fromTo('.initial_modelpic',{x: '-39rem'},{duration: 0.3, x: '0', onComplete: function() {
+    gsap.set(this.targets(), { clearProps: "all" }, 0);
+  }})
+    
+    
     },2000)
   
-    
   }, [])
   
 
@@ -94,7 +104,7 @@ const Home = () => {
             </div>
             <div className={styles.productpage__right}>
               <div className={styles.productpage__right__imgcontainer}>
-                <ImageWrapper absolute={true} className={`${styles.productpage__right__imgcontainer__modelpic} ${activeModelPic === 1? styles.modelpic__active:styles.modelpic__passive}`} src={ModelPic1} />
+                <ImageWrapper absolute={true} className={`${styles.productpage__right__imgcontainer__modelpic} ${activeModelPic === 1? styles.modelpic__active:styles.modelpic__passive} initial_modelpic`} src={ModelPic1} />
                 <ImageWrapper absolute={true} className={`${styles.productpage__right__imgcontainer__modelpic} ${activeModelPic === 2? styles.modelpic__active:styles.modelpic__passive}`} src={ModelPic2} />
                 <ImageWrapper absolute={true} className={`${styles.productpage__right__imgcontainer__modelpic} ${activeModelPic === 3? styles.modelpic__active:styles.modelpic__passive}`} src={ModelPic3} />
                 <ImageWrapper absolute={true} className={`${styles.productpage__right__imgcontainer__modelpic} ${activeModelPic === 4? styles.modelpic__active:styles.modelpic__passive}`} src={ModelPic4} />

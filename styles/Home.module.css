@@ -1,20 +1,21 @@
 .productpage{
     @apply flex relative;
     min-height: calc(100vh - 4.5rem);
-    height: 53.25rem;
+    height: 772px;
 }
 
 .productpage .productpage__left{
-    @apply flex flex-col justify-end py-8 gap-12 relative;
+    @apply flex flex-col py-8 gap-12 relative;
     width: 57%;
 }
 
 .productpage .productpage__left .productpage__left__info{
-    @apply flex flex-col gap-5 mt-12;
+    @apply flex flex-col gap-5 mt-44;
+    height: 144px;
 }
 
 .productpage .productpage__left .productpage__left__info .productpage__left__info__title{
-    @apply text-6xl font-bold absolute;
+    @apply text-6xl font-bold;
     line-height: 5rem;
     letter-spacing: 0px;
 }
@@ -36,6 +37,7 @@
 
 .productpage .productpage__left .productpage__left__size{
     @apply flex flex-col gap-4;
+    height: 100px;
 }
 
 .productpage .productpage__left .productpage__left__size .productpage__left__size__title{
@@ -55,11 +57,12 @@
 }
 
 .productpage .productpage__left .productpage__left__carousel {
-    @apply flex gap-4;
+    @apply flex gap-4 absolute bottom-8;
 }
 
 .productpage .productpage__left .productpage__left__carousel .productpage__left__carousel__imgcontainer{
     @apply h-52 w-36 overflow-hidden;
+    height: 208px;
 }
 
 .productpage .productpage__left .productpage__left__carousel .productpage__left__carousel__imgcontainer__img{
@@ -71,14 +74,17 @@
     @apply bg-slate-500;
     background-image: url('../public/assets/images/model1.jpg');
 }
+
 .productpage .productpage__left .productpage__left__carousel .productpage__left__carousel__imgcontainer__img2{
     @apply bg-slate-500;
     background-image: url('../public/assets/images/model2.jpg');
 }
+
 .productpage .productpage__left .productpage__left__carousel .productpage__left__carousel__imgcontainer__img3{
     @apply bg-slate-500;
     background-image: url('../public/assets/images/model3.jpg');
 }
+
 .productpage .productpage__left .productpage__left__carousel .productpage__left__carousel__imgcontainer__img4{
     @apply bg-slate-500;
     background-image: url('../public/assets/images/model4.jpg');
@@ -98,7 +104,7 @@
 }
 
 .productpage .productpage__right__imgcontainer__modelpic{
-    @apply absolute bottom-0 left-3/4 -translate-x-1/2 opacity-0;
+    @apply absolute bottom-0 left-3/4 opacity-0;
     z-index: 60;
     bottom: -75px;
     width: 35rem;
@@ -106,6 +112,7 @@
 }
 
 .productpage .modelpic__active{
+    transform: translateX(-50%);
     animation: show-in 0.15s linear forwards;
     animation-delay: 0.20s;
 }
